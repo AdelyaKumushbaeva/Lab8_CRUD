@@ -239,7 +239,7 @@ namespace Lab8_CRUD
                             sw.WriteLine();
                         }
                     }
-                    MessageBox.Show("Экспорт в CSV успешно завершен!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Экспорт в CSV успешно завершен!(v1.0) ", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
