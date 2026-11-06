@@ -44,6 +44,8 @@
             labelStatus = new Label();
             buttonExport = new Button();
             buttonCancel = new Button();
+            textBox1 = new TextBox();
+            textBoxSearch = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewStudents).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericAge).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericGrade).BeginInit();
@@ -154,7 +156,7 @@
             // 
             // buttonDelete
             // 
-            buttonDelete.Location = new Point(647, 234);
+            buttonDelete.Location = new Point(683, 248);
             buttonDelete.Name = "buttonDelete";
             buttonDelete.Size = new Size(94, 29);
             buttonDelete.TabIndex = 11;
@@ -164,7 +166,7 @@
             // 
             // buttonClear
             // 
-            buttonClear.Location = new Point(647, 284);
+            buttonClear.Location = new Point(683, 298);
             buttonClear.Name = "buttonClear";
             buttonClear.Size = new Size(94, 29);
             buttonClear.TabIndex = 12;
@@ -183,7 +185,7 @@
             // 
             // buttonExport
             // 
-            buttonExport.Location = new Point(647, 330);
+            buttonExport.Location = new Point(683, 344);
             buttonExport.Name = "buttonExport";
             buttonExport.Size = new Size(94, 29);
             buttonExport.TabIndex = 14;
@@ -193,7 +195,7 @@
             // 
             // buttonCancel
             // 
-            buttonCancel.Location = new Point(647, 378);
+            buttonCancel.Location = new Point(683, 392);
             buttonCancel.Name = "buttonCancel";
             buttonCancel.Size = new Size(94, 29);
             buttonCancel.TabIndex = 15;
@@ -201,11 +203,30 @@
             buttonCancel.UseVisualStyleBackColor = true;
             buttonCancel.Click += buttonCancel_Click;
             // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(376, 243);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(125, 27);
+            textBox1.TabIndex = 16;
+            // 
+            // textBoxSearch
+            // 
+            textBoxSearch.Location = new Point(507, 241);
+            textBoxSearch.Name = "textBoxSearch";
+            textBoxSearch.Size = new Size(94, 29);
+            textBoxSearch.TabIndex = 17;
+            textBoxSearch.Text = "Поиск";
+            textBoxSearch.UseVisualStyleBackColor = true;
+            textBoxSearch.Click += button1_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(982, 553);
+            Controls.Add(textBoxSearch);
+            Controls.Add(textBox1);
             Controls.Add(buttonCancel);
             Controls.Add(buttonExport);
             Controls.Add(labelStatus);
@@ -251,5 +272,7 @@
         private Label labelStatus;
         private Button buttonExport;
         private Button buttonCancel;
+        private TextBox textBox1;
+        private Button textBoxSearch;
     }
 }

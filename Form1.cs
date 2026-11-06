@@ -15,9 +15,9 @@ namespace Lab8_CRUD
             InitializeComponent();
         }
 
-        
+
         // 1. ЗАГРУЗКА ДАННЫХ И СЧЕТЧИК
-        
+
         private void Form1_Load(object sender, EventArgs e)
         {
             LoadData();
@@ -66,9 +66,9 @@ namespace Lab8_CRUD
             }
         }
 
-        
+
         // 2. ДОБАВЛЕНИЕ (CREATE)
-        
+
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(textBoxName.Text))
@@ -114,9 +114,9 @@ namespace Lab8_CRUD
             }
         }
 
-        
+
         // 3. ОБНОВЛЕНИЕ (UPDATE) 
-        
+
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
             if (dataGridViewStudents.CurrentRow == null)
@@ -151,9 +151,9 @@ namespace Lab8_CRUD
             }
         }
 
-       
+
         // 4. УДАЛЕНИЕ (DELETE)
-        
+
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             if (dataGridViewStudents.CurrentRow == null)
@@ -191,9 +191,9 @@ namespace Lab8_CRUD
             }
         }
 
-        
+
         // 5. ОЧИСТКА ПОЛЕЙ
-        
+
         private void buttonClear_Click(object sender, EventArgs e)
         {
             ClearFields();
@@ -207,9 +207,9 @@ namespace Lab8_CRUD
             numericGrade.Value = 0;
         }
 
-       
+
         // 6. САМОСТОЯТЕЛЬНАЯ РАБОТА: ЭКСПОРТ В CSV
-        
+
         private void buttonExport_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
@@ -248,13 +248,44 @@ namespace Lab8_CRUD
             }
         }
 
-       
+
         // 7. САМОСТОЯТЕЛЬНАЯ РАБОТА: ОТМЕНА (ПЕРЕЗАГРУЗКА)
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             LoadData();
             ClearFields();
             MessageBox.Show("Действие отменено, данные обновлены.", "Отмена", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                LoadData(); // Если поле пустое, показываем всех
+                return;
+            }
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string sql = "SELECT * FROM Students WHERE FullName LIKE @search";
+                    SqlCommand cmd = new SqlCommand(sql, connection);
+                    cmd.Parameters.AddWithValue("@search", "%" + textBox1.Text + "%");
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    DataTable table = new DataTable();
+                    adapter.Fill(table);
+
+                    dataGridViewStudents.DataSource = table;
+                    labelStatus.Text = "Найдено студентов: " + table.Rows.Count;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка поиска: " + ex.Message);
+            }
         }
     }
 }
